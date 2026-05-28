@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WizLabs — Imagine. Design. Automate. Repeat.</title>
+    <meta name="description" content="WizLabs is developing AI-native automation tools focused on the B2B MediaTech sector. Creating ultra-low-risk ways to launch digital generative product automations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Helvetica+Neue:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+/* ============================================
+   WizLabs — Static Page Styles
+   Design: Dark, minimal, tech-forward
+   ============================================ */
+
+/* === RESET & BASE === */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg: #000000;
+    --color-bg-section: #f5f5f5;
+    --color-bg-dark: #1a1a1a;
+    --color-text-primary: #000000;
+    --color-text-secondary: #6e6e6e;
+    --color-text-light: #ffffff;
+    --color-accent-red: #e63946;
+    --color-line: #c2c2c2;
+    --color-line-dark: #333;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    background: var(--color-bg);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity var(--transition-smooth);
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* === ANIMATION TARGETS === */
+.animate-target {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-target.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === HEADER === */
+#site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 16px 40px;
+    transition: background-color var(--transition-smooth),
+                backdrop-filter var(--transition-smooth),
+                box-shadow var(--transition-smooth);
+}
+
+#site-header.scrolled {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 10;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--color-text-light);
+    transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+}
+
+.logo-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.logo-top {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.logo-bracket {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-text-light);
+    line-height: 1;
+}
+
+.logo-text {
+    font-family: var(--font-body);
+    font-size: 20px;
+    color: var(--color-text-light);
+    letter-spacing: 0.02em;
+}
+
+.logo-sub {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--color-text-light);
+    opacity: 0.6;
+    letter-spacing: 0.02em;
+    margin-top: -2px;
+}
+
+.header-nav {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-link {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--color-text-light);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-text-light);
+    transition: width var(--transition-smooth);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    opacity: 1;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.btn-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    color: var(--color-text-light);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 10px 28px;
+    border-radius: 50px;
+    letter-spacing: 0.1em;
+    transition: all var(--transition-smooth);
+    cursor: pointer;
+}
+
+.btn-contact:hover {
+    background: rgba(255,255,255,0.15);
+    opacity: 1;
+}
+
+/* === MOBILE MENU === */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu.open {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.mobile-menu-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+}
+
+.mobile-menu-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: min(380px, 85vw);
+    height: 100%;
+    background: var(--color-bg);
+    padding: 40px;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-menu.open .mobile-menu-content {
+    transform: translateX(0);
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    padding: 8px;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 80px;
+}
+
+.mobile-nav a {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--color-text-light);
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: all var(--transition-smooth);
+}
+
+.mobile-nav a:hover {
+    padding-left: 12px;
+    opacity: 1;
+    color: var(--color-line);
+}
+
+/* === HERO SECTION === */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.hero-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    padding: 0 60px 80px 60px;
+    max-width: 1000px;
+}
+
+.hero-title {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(42px, 7vw, 90px);
+    color: var(--color-text-light);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.hero-subtitle {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(14px, 1.5vw, 18px);
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === FEATURE SECTIONS (hidden) === */
+.feature-section {
+    background: var(--color-bg-section);
+    padding: 80px 40px;
+}
+
+.feature-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.feature-info {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.vertical-lines {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.vline {
+    width: 1px;
+    background: var(--color-line);
+    min-height: 100%;
+}
+
+.feature-details {
+    flex: 1;
+}
+
+.feature-label {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+    margin-bottom: 16px;
+}
+
+.feature-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--color-text-primary);
+    margin-bottom: 24px;
+}
+
+.feature-stats {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+}
+
+.stat-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin-top: 4px;
+}
+
+.feature-text {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
+}
+
+.btn-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    letter-spacing: 0.05em;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-text-primary);
+    transition: all var(--transition-smooth);
+}
+
+.btn-read-more:hover {
+    opacity: 1;
+    gap: 16px;
+}
+
+.btn-read-more svg {
+    transition: transform var(--transition-smooth);
+}
+
+.btn-read-more:hover svg {
+    transform: translateX(4px);
+}
+
+.feature-image {
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-image:hover img {
+    transform: scale(1.04);
+}
+
+/* === CTA SECTION === */
+.cta-section {
+    background: var(--color-bg-section);
+    padding: 80px 40px;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cta-text {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: 32px;
+}
+
+.btn-cta {
+    justify-content: center;
+}
+
+/* === FULL-WIDTH IMAGE === */
+.fullwidth-image-section {
+    position: relative;
+    height: 55vh;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.fullwidth-image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 56% 51%;
+}
+
+/* === R&D SECTION === */
+.rd-section {
+    background: #0d0d0d;
+    padding: 60px 48px 80px;
+    border-radius: 24px;
+    margin: 0 20px;
+}
+
+.rd-intro {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+}
+
+.rd-title {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(24px, 3vw, 38px);
+    color: var(--color-accent-red);
+    line-height: 1.3;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.rd-subtitle {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(16px, 2vw, 24px);
+    color: var(--color-text-light);
+    line-height: 1.4;
+    max-width: 800px;
+}
+
+.rd-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.rd-product-card {
+    padding: 0;
+    background: transparent;
+    border: none;
+    transition: all var(--transition-smooth);
+}
+
+.rd-product-card:hover {
+    transform: translateY(-4px);
+}
+
+.rd-product-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 0 4px;
+}
+
+.rd-product-name {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 24px;
+    color: var(--color-text-light);
+}
+
+.rd-product-tag {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.02em;
+}
+
+.rd-product-image {
+    width: 100%;
+    aspect-ratio: 0.9;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 14px;
+}
+
+.rd-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rd-product-card:hover .rd-product-image img {
+    transform: scale(1.05);
+}
+
+.rd-product-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.55);
+    padding: 0 4px;
+}
+
+/* === PARTNERS SECTION === */
+.partners-section {
+    background: #ffffff;
+    padding: 80px 60px;
+}
+
+.partners-title {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(18px, 2vw, 24px);
+    color: var(--color-accent-red);
+    text-align: left;
+    margin-bottom: 40px;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.partners-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.partner-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    filter: none;
+    opacity: 1;
+    transition: all var(--transition-smooth);
+}
+
+.partner-logo:hover {
+    opacity: 0.7;
+}
+
+.partner-logo img {
+    max-height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* === FOOTER === */
+.site-footer {
+    background: #ffffff;
+    color: var(--color-text-primary);
+    padding: 80px 60px 40px;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-newsletter {
+    margin-bottom: 80px;
+}
+
+.footer-newsletter-title {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    margin-bottom: 40px;
+    max-width: 700px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 32px;
+    max-width: 900px;
+    align-items: flex-end;
+}
+
+.newsletter-input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.newsletter-label {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
+}
+
+.newsletter-label .required {
+    color: var(--color-text-secondary);
+    margin-left: 2px;
+}
+
+.newsletter-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-line);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 12px 0;
+    outline: none;
+    transition: border-color var(--transition-smooth);
+}
+
+.newsletter-input:focus {
+    border-bottom-color: var(--color-text-primary);
+}
+
+.newsletter-btn {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: var(--color-text-light);
+    background: var(--color-text-primary);
+    border: none;
+    border-radius: 50px;
+    padding: 16px 48px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+.newsletter-btn:hover {
+    background: #333;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 60px;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-col-title {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+    margin-bottom: 12px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.footer-col a,
+.footer-col p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+.footer-col a:hover {
+    color: var(--color-text-primary);
+    opacity: 1;
+}
+
+.footer-copyright p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+}
+
+/* === CONTACT LIGHTBOX === */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.lightbox-overlay.open {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.lightbox-container {
+    position: relative;
+    background: #ffffff;
+    border-radius: 16px;
+    width: min(520px, 90vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 48px 44px;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-overlay.open .lightbox-container {
+    transform: translateY(0) scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    line-height: 0;
+}
+
+.lightbox-close:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.lightbox-title {
+    font-family: var(--font-body);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin-bottom: 6px;
+}
+
+.lightbox-subtitle {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-bottom: 32px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
+}
+
+.form-field input,
+.form-field textarea {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-primary);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-line);
+    padding: 10px 0;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    border-bottom-color: var(--color-text-primary);
+}
+
+.form-field textarea {
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    padding: 12px;
+    margin-top: 4px;
+}
+
+.form-field textarea:focus {
+    border-color: var(--color-text-primary);
+}
+
+.form-submit-btn {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: var(--color-text-light);
+    background: var(--color-text-primary);
+    border: none;
+    border-radius: 50px;
+    padding: 16px 48px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+    transition: all var(--transition-smooth);
+}
+
+.form-submit-btn:hover {
+    background: #333;
+}
+
+.form-error {
+    display: none;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: #e63946;
+    margin-top: 4px;
+}
+
+.input-error {
+    border-bottom-color: #e63946 !important;
+}
+
+.form-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.form-success p {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1000px) {
+    #site-header {
+        padding: 12px 24px;
+    }
+
+    .header-nav {
+        display: none;
+    }
+
+    .feature-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .feature-section {
+        padding: 60px 24px;
+    }
+
+    .feature-right .feature-content-wrapper {
+        direction: ltr;
+    }
+
+    .feature-right .feature-content-wrapper .feature-image {
+        order: -1;
+    }
+
+    .feature-stats {
+        gap: 24px;
+    }
+
+    .stat-value {
+        font-size: 32px;
+    }
+
+    .rd-section {
+        padding: 60px 24px 80px;
+    }
+
+    .rd-products {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .partners-section {
+        padding: 60px 24px;
+    }
+
+    .site-footer {
+        padding: 60px 24px 32px;
+    }
+
+    .footer-bottom {
+        flex-direction: column-reverse;
+        gap: 40px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 750px) {
+    .hero-content {
+        padding: 0 24px 60px 24px;
+    }
+
+    .logo-bracket {
+        font-size: 26px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+
+    .logo-sub {
+        font-size: 9px;
+    }
+
+    .btn-contact {
+        font-size: 11px;
+        padding: 8px 20px;
+    }
+
+    .feature-section {
+        padding: 48px 20px;
+    }
+
+    .feature-info {
+        gap: 16px;
+    }
+
+    .feature-label {
+        font-size: 14px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+
+    .feature-text {
+        font-size: 14px;
+    }
+
+    .cta-section {
+        padding: 60px 20px;
+    }
+
+    .fullwidth-image-section {
+        height: 35vh;
+        min-height: 250px;
+    }
+
+    .rd-section {
+        padding: 48px 20px 60px;
+    }
+
+    .rd-products {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .rd-product-card {
+        padding: 0;
+    }
+
+    .partners-section {
+        padding: 48px 20px;
+    }
+
+    .partners-logos {
+        gap: 24px;
+    }
+
+    .partner-logo img {
+        max-height: 44px;
+    }
+
+    .site-footer {
+        padding: 48px 20px 24px;
+    }
+
+    .footer-newsletter-title {
+        font-size: clamp(26px, 6vw, 40px);
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .newsletter-btn {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- ============ HEADER ============ -->
+    <header id="site-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <button class="hamburger" id="hamburger-btn" aria-label="Open Site Navigation" style="display:none;">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="logo-group">
+                    <div class="logo-top">
+                        <span class="logo-bracket">&lt;</span>
+                        <span class="logo-text">wizlabs</span>
+                    </div>
+                    <span class="logo-sub">by varotas</span>
+                </div>
+            </div>
+            <nav class="header-nav" style="display:none;">
+                <a href="#" class="nav-link">WizLabs Media</a>
+            </nav>
+            <div class="header-right">
+                <button class="btn-contact" id="contact-btn" type="button">CONTACT</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ MOBILE MENU ============ -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-overlay"></div>
+        <div class="mobile-menu-content">
+            <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close navigation">
+                <svg width="24" height="24" viewBox="65.35 65.35 69.3 69.3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M134.65 128.99L105.66 100l28.99-28.99-5.66-5.66L100 94.34 71.01 65.35l-5.66 5.66L94.34 100l-28.99 28.99 5.66 5.66L100 105.66l28.99 28.99 5.66-5.66z"/>
+                </svg>
+            </button>
+            <nav class="mobile-nav">
+                <a href="#features">Features</a>
+                <a href="#rd-section">Samples</a>
+                <a href="#partners">Vision</a>
+                <a href="#">Demo</a>
+                <a href="#contact">About</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section id="hero" class="hero-section">
+        <div class="hero-video-bg">
+            <video autoplay muted loop playsinline preload="auto" id="hero-video">
+                <source src="https://video.wixstatic.com/video/4d7ad7_2d6441c5743548fd89298234b44daea1/720p/mp4/file.mp4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Imagine. Design.<br>Automate. Repeat.</h1>
+            <p class="hero-subtitle">Creating ultra-low-risk ways to launch digital generative product automations.</p>
+        </div>
+    </section>
+
+    <main id="features">
+
+        <!-- ============ HIDDEN SECTIONS START ============ -->
+        <div style="display:none;">
+
+        <!-- ============ FEATURE 1: Battery ============ -->
+        <section class="feature-section feature-left">
+            <div class="feature-content-wrapper">
+                <div class="feature-info">
+                    <div class="vertical-lines">
+                        <div class="vline"></div>
+                        <div class="vline"></div>
+                    </div>
+                    <div class="feature-details">
+                        <h3 class="feature-label">OPTIMIZED BATTERY EFFICIENCY</h3>
+                        <div class="feature-divider"></div>
+                        <div class="feature-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">223 Mi</span>
+                                <span class="stat-desc">Electric Range</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">30 Min</span>
+                                <span class="stat-desc">to Fully Charge</span>
+                            </div>
+                        </div>
+                        <p class="feature-text">This is a space to share more about the business: who's behind it, what it does and what this site has to offer. It's an opportunity to tell the story behind the business or describe a special service or product it offers. You can use this section to share the company history or highlight a particular feature that sets it apart from competitors.</p>
+                        <a href="#" class="btn-read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 200 200" fill="currentColor"><path d="M104.133 18.918l-9.431 8.947 61.913 65.269-137.498.938.089 13 138.096-.942-61.338 66.11 9.529 8.842 75.39-81.254-76.75-80.91z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-image">
+                    <img src="https://static.wixstatic.com/media/c837a6_f801794919b24f6c9702a36cdde944e7~mv2.jpg/v1/fill/w_600,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Battery.jpg" alt="Battery efficiency" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FEATURE 2: Compact ============ -->
+        <section class="feature-section feature-right">
+            <div class="feature-content-wrapper">
+                <div class="feature-image">
+                    <img src="https://static.wixstatic.com/media/c837a6_aa7ca0ce5fc544f780c11d8b6964001b~mv2.jpg/v1/fill/w_600,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Robot_Back_View.jpg" alt="Compact robot" loading="lazy">
+                </div>
+                <div class="feature-info">
+                    <div class="feature-details">
+                        <h3 class="feature-label">COMPACT</h3>
+                        <div class="feature-divider"></div>
+                        <div class="feature-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">50 Kg</span>
+                                <span class="stat-desc">Payload Capacity</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">60 Liter</span>
+                                <span class="stat-desc">Storage Compartment</span>
+                            </div>
+                        </div>
+                        <p class="feature-text">This is a space to share more about the business: who's behind it, what it does and what this site has to offer. It's an opportunity to tell the story behind the business or describe a special service or product it offers. You can use this section to share the company history or highlight a particular feature that sets it apart from competitors.</p>
+                        <a href="#" class="btn-read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 200 200" fill="currentColor"><path d="M104.133 18.918l-9.431 8.947 61.913 65.269-137.498.938.089 13 138.096-.942-61.338 66.11 9.529 8.842 75.39-81.254-76.75-80.91z"/></svg>
+                        </a>
+                    </div>
+                    <div class="vertical-lines">
+                        <div class="vline"></div>
+                        <div class="vline"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FEATURE 3: Sensors ============ -->
+        <section class="feature-section feature-left">
+            <div class="feature-content-wrapper">
+                <div class="feature-info">
+                    <div class="vertical-lines">
+                        <div class="vline"></div>
+                        <div class="vline"></div>
+                    </div>
+                    <div class="feature-details">
+                        <h3 class="feature-label">ADVANCED SENSOR TECHNOLOGY</h3>
+                        <div class="feature-divider"></div>
+                        <div class="feature-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">360°</span>
+                                <span class="stat-desc">Sensors coverage</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">85%</span>
+                                <span class="stat-desc">Improved Reaction Time</span>
+                            </div>
+                        </div>
+                        <p class="feature-text">This is a space to share more about the business: who's behind it, what it does and what this site has to offer. It's an opportunity to tell the story behind the business or describe a special service or product it offers. You can use this section to share the company history or highlight a particular feature that sets it apart from competitors.</p>
+                        <a href="#" class="btn-read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 200 200" fill="currentColor"><path d="M104.133 18.918l-9.431 8.947 61.913 65.269-137.498.938.089 13 138.096-.942-61.338 66.11 9.529 8.842 75.39-81.254-76.75-80.91z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-image">
+                    <img src="https://static.wixstatic.com/media/c837a6_3da3147ce6194772a7ab359d935309e3~mv2.jpg/v1/fill/w_600,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Sensor.jpg" alt="Advanced sensors" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CTA SECTION ============ -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <p class="cta-text">Use this space to promote the business, its products or its services. Help people become familiar with the business and its offerings, creating a sense of connection and trust. Focus on what makes the business unique and how users can benefit from choosing it.</p>
+                <a href="#" class="btn-read-more btn-cta">
+                    READ MORE
+                    <svg width="16" height="16" viewBox="0 0 200 200" fill="currentColor"><path d="M104.133 18.918l-9.431 8.947 61.913 65.269-137.498.938.089 13 138.096-.942-61.338 66.11 9.529 8.842 75.39-81.254-76.75-80.91z"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============ FULL-WIDTH IMAGE ============ -->
+        <section class="fullwidth-image-section">
+            <img src="https://static.wixstatic.com/media/84770f_d8e3b8a927114130962994bc367c5ee8~mv2.jpg/v1/fill/w_1920,h_900,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/84770f_d8e3b8a927114130962994bc367c5ee8~mv2.jpg" alt="WizLabs technology" loading="lazy">
+        </section>
+
+        </div>
+        <!-- ============ HIDDEN SECTIONS END ============ -->
+
+        <!-- ============ R&D SECTION ============ -->
+        <section id="rd-section" class="rd-section">
+            <div class="rd-intro">
+                <h2 class="rd-title">Research &amp; Development</h2>
+                <p class="rd-subtitle">WizLabs is developing AI-native automation tools focused on the B2B MediaTech sector.</p>
+            </div>
+            <div class="rd-products">
+                <div class="rd-product-card">
+                    <div class="rd-product-header">
+                        <h3 class="rd-product-name">GlueAI</h3>
+                        <span class="rd-product-tag">#edutech</span>
+                    </div>
+                    <div class="rd-product-image">
+                        <img src="https://static.wixstatic.com/media/4d7ad7_a5cb04ecb53641869c5dd77b9c4e43af~mv2.png/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0_0.png" alt="GlueAI" loading="lazy">
+                    </div>
+                    <p class="rd-product-desc">A generative AI–based content transformation framework for creating targeted, personalized educational materials.</p>
+                </div>
+                <div class="rd-product-card">
+                    <div class="rd-product-header">
+                        <h3 class="rd-product-name">CollectAI</h3>
+                        <span class="rd-product-tag">#mediatech</span>
+                    </div>
+                    <div class="rd-product-image">
+                        <img src="https://static.wixstatic.com/media/4d7ad7_3d7f0fd2c1434e209f7844fa6f6c2abf~mv2.jpg/v1/fill/w_500,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/book_mockup_alpha_edited.jpg" alt="CollectAI" loading="lazy">
+                    </div>
+                    <p class="rd-product-desc">Agentic catalog creation toolbox that enables faster capture, organization, enrichment, and design of collectible asset visual portfolios.</p>
+                </div>
+                <div class="rd-product-card">
+                    <div class="rd-product-header">
+                        <h3 class="rd-product-name">ConnectAI</h3>
+                        <span class="rd-product-tag">#mediatech</span>
+                    </div>
+                    <div class="rd-product-image">
+                        <img src="https://static.wixstatic.com/media/4d7ad7_c21d8f71109846019d23073c481b4f2e~mv2.png/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0_3.png" alt="ConnectAI" loading="lazy">
+                    </div>
+                    <p class="rd-product-desc">A video content distribution assistant that provides an easy way for content owners to package and pitch their assets to potential B2B clients.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PARTNERS SECTION ============ -->
+        <section id="partners" class="partners-section">
+            <h2 class="partners-title">Partners and clients</h2>
+            <div class="partners-logos">
+                <a href="https://www.yashinski.com/" target="_blank" rel="noreferrer noopener" class="partner-logo">
+                    <img src="https://static.wixstatic.com/media/4d7ad7_c193e272eecd48e5bc7caa3f8df80afc~mv2.gif" alt="Yashinski" loading="lazy">
+                </a>
+                <a href="https://www.backscreen.com/" target="_blank" rel="noreferrer noopener" class="partner-logo">
+                    <img src="https://static.wixstatic.com/media/4d7ad7_3a543813708248f1ad1d008c808c95fc~mv2.jpg/v1/fill/w_238,h_78,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/backscreen_edited.jpg" alt="Backscreen" loading="lazy">
+                </a>
+                <a href="https://fashiontv.com/" target="_blank" rel="noreferrer noopener" class="partner-logo">
+                    <img src="https://static.wixstatic.com/media/4d7ad7_a6344ac919044b7ab4fb4daa276db25a~mv2.png/v1/fill/w_180,h_44,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/_media_dl%3D60835.png" alt="FashionTV" loading="lazy">
+                </a>
+                <a href="https://www.bassline.co.il/" target="_blank" rel="noreferrer noopener" class="partner-logo">
+                    <img src="https://static.wixstatic.com/media/4d7ad7_bde635fdda1249e0a93f0da6f66e5f88~mv2.jpg/v1/fill/w_274,h_69,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Screenshot%202026-03-17%20at%204_06_edited.jpg" alt="Bassline" loading="lazy">
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer id="contact" class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-newsletter">
+                <h4 class="footer-newsletter-title">Be the First to Receive the Latest News From WizLabs</h4>
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <div class="newsletter-input-group">
+                        <label for="newsletter-email" class="newsletter-label">Email <span class="required">*</span></label>
+                        <input type="email" id="newsletter-email" class="newsletter-input" required placeholder="" aria-label="Email">
+                    </div>
+                    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+                </form>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2026 by WizLabs</p>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h5 class="footer-col-title">CONTACT</h5>
+                    <a href="mailto:info@varotas.com">info@varotas.com</a>
+                    <p>Mali House, Marathonos 3,</p>
+                    <p>Paphos, Cyprus</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ CONTACT LIGHTBOX ============ -->
+    <div class="lightbox-overlay" id="contact-lightbox">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-container">
+            <button class="lightbox-close" id="lightbox-close" aria-label="Close contact form">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="lightbox-content">
+                <h2 class="lightbox-title">Contact</h2>
+                <p class="lightbox-subtitle">Get in touch with us</p>
+                <form class="contact-form" id="contact-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="contact-first-name">First Name</label>
+                            <input type="text" id="contact-first-name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="contact-last-name">Last Name</label>
+                            <input type="text" id="contact-last-name" required>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="contact-email">Email *</label>
+                        <input type="email" id="contact-email" required>
+                        <span class="form-error" id="email-error">Invalid e-mail address</span>
+                    </div>
+                    <div class="form-field" style="display:none;">
+                        <label for="contact-phone">Phone</label>
+                        <input type="tel" id="contact-phone">
+                    </div>
+                    <div class="form-field">
+                        <label for="contact-message">Message *</label>
+                        <textarea id="contact-message" rows="4"></textarea>
+                        <span class="form-error" id="message-error">Please add a message (at least 5 characters)</span>
+                    </div>
+                    <button type="submit" class="form-submit-btn">SUBMIT</button>
+                </form>
+                <div class="form-success" id="form-success">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M8 12l3 3 5-5"/>
+                    </svg>
+                    <p>Thanks, we'll contact you soon!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== CONFIGURATION =====
+        const WEBHOOK_URL = 'YOUR_WEBHOOK_URL_HERE';
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenu.querySelector('.mobile-menu-overlay').addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('site-header');
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 80) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-section, .rd-product-card, .cta-section, .rd-intro, .partners-section').forEach(el => {
+            el.classList.add('animate-target');
+            observer.observe(el);
+        });
+
+        // Contact lightbox
+        const contactBtn = document.getElementById('contact-btn');
+        const lightbox = document.getElementById('contact-lightbox');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxBackdrop = lightbox.querySelector('.lightbox-backdrop');
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+        const emailInput = document.getElementById('contact-email');
+        const emailError = document.getElementById('email-error');
+        const messageInput = document.getElementById('contact-message');
+        const messageError = document.getElementById('message-error');
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function resetLightbox() {
+            contactForm.reset();
+            contactForm.style.display = '';
+            formSuccess.style.display = 'none';
+            emailError.style.display = 'none';
+            emailInput.classList.remove('input-error');
+            messageError.style.display = 'none';
+            messageInput.classList.remove('input-error');
+        }
+
+        contactBtn.addEventListener('click', () => {
+            resetLightbox();
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxBackdrop.addEventListener('click', closeLightbox);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+                closeLightbox();
+            }
+        });
+
+        // Email validation + form submit
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        emailInput.addEventListener('input', () => {
+            emailError.style.display = 'none';
+            emailInput.classList.remove('input-error');
+        });
+
+        messageInput.addEventListener('input', () => {
+            messageError.style.display = 'none';
+            messageInput.classList.remove('input-error');
+        });
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const emailVal = emailInput.value.trim();
+            if (!emailVal) {
+                emailError.textContent = 'Please add your e-mail address';
+                emailError.style.display = 'block';
+                emailInput.classList.add('input-error');
+                emailInput.focus();
+                return;
+            }
+
+            if (!emailRegex.test(emailVal)) {
+                emailError.textContent = 'Invalid e-mail address';
+                emailError.style.display = 'block';
+                emailInput.classList.add('input-error');
+                emailInput.focus();
+                return;
+            }
+
+            const msgVal = messageInput.value.trim();
+            if (msgVal.length < 5) {
+                messageError.textContent = msgVal.length === 0
+                    ? 'Please add a message'
+                    : 'Message must be at least 5 characters';
+                messageError.style.display = 'block';
+                messageInput.classList.add('input-error');
+                messageInput.focus();
+                return;
+            }
+
+            // Send to webhook
+            const formData = {
+                firstName: document.getElementById('contact-first-name').value.trim(),
+                lastName: document.getElementById('contact-last-name').value.trim(),
+                email: emailVal,
+                message: document.getElementById('contact-message').value.trim()
+            };
+
+            if (WEBHOOK_URL && WEBHOOK_URL !== 'YOUR_WEBHOOK_URL_HERE') {
+                fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                }).catch(() => {});
+            }
+
+            contactForm.style.display = 'none';
+            formSuccess.style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
