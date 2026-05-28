@@ -1341,37 +1341,8 @@ img {
                 <h2 class="rd-title">Research &amp; Development</h2>
                 <p class="rd-subtitle">WizLabs is developing AI-native automation tools focused on the B2B MediaTech sector.</p>
             </div>
-            <div class="rd-products">
-                <div class="rd-product-card">
-                    <div class="rd-product-header">
-                        <h3 class="rd-product-name">GlueAI</h3>
-                        <span class="rd-product-tag">#edutech</span>
-                    </div>
-                    <div class="rd-product-image">
-                        <img src="assets/images/glueai.png" alt="GlueAI" loading="lazy">
-                    </div>
-                    <p class="rd-product-desc">A generative AI–based content transformation framework for creating targeted, personalized educational materials.</p>
-                </div>
-                <div class="rd-product-card">
-                    <div class="rd-product-header">
-                        <h3 class="rd-product-name">CollectAI</h3>
-                        <span class="rd-product-tag">#mediatech</span>
-                    </div>
-                    <div class="rd-product-image">
-                        <img src="assets/images/collectai.jpg" alt="CollectAI" loading="lazy">
-                    </div>
-                    <p class="rd-product-desc">Agentic catalog creation toolbox that enables faster capture, organization, enrichment, and design of collectible asset visual portfolios.</p>
-                </div>
-                <div class="rd-product-card">
-                    <div class="rd-product-header">
-                        <h3 class="rd-product-name">ConnectAI</h3>
-                        <span class="rd-product-tag">#mediatech</span>
-                    </div>
-                    <div class="rd-product-image">
-                        <img src="assets/images/connectai.png" alt="ConnectAI" loading="lazy">
-                    </div>
-                    <p class="rd-product-desc">A video content distribution assistant that provides an easy way for content owners to package and pitch their assets to potential B2B clients.</p>
-                </div>
+            <div class="rd-products" id="rd-products">
+                <!-- Dynamically loaded from products.md -->
             </div>
         </section>
 
@@ -1534,10 +1505,55 @@ img {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-section, .rd-product-card, .cta-section, .rd-intro, .partners-section').forEach(el => {
-            el.classList.add('animate-target');
-            observer.observe(el);
-        });
+        // Load products from products.md
+        function parseProducts(md) {
+            const blocks = md.split('---').map(b => b.trim()).filter(b => b && !b.startsWith('# '));
+            return blocks.map(block => {
+                const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+                const product = {};
+                lines.forEach(line => {
+                    if (line.startsWith('## ')) product.title = line.replace('## ', '');
+                    else if (line.startsWith('- image:')) product.image = line.replace('- image:', '').trim();
+                    else if (line.startsWith('- tag:')) product.tag = line.replace('- tag:', '').trim();
+                    else if (line.startsWith('- description:')) product.description = line.replace('- description:', '').trim();
+                });
+                return product;
+            }).filter(p => p.title);
+        }
+
+        function renderProducts(products) {
+            const container = document.getElementById('rd-products');
+            container.innerHTML = products.map(p => `
+                <div class="rd-product-card">
+                    <div class="rd-product-header">
+                        <h3 class="rd-product-name">${p.title}</h3>
+                        <span class="rd-product-tag">${p.tag || ''}</span>
+                    </div>
+                    <div class="rd-product-image">
+                        <img src="${p.image}" alt="${p.title}" loading="lazy">
+                    </div>
+                    <p class="rd-product-desc">${p.description || ''}</p>
+                </div>
+            `).join('');
+        }
+
+        fetch('products.md')
+            .then(r => r.text())
+            .then(md => {
+                renderProducts(parseProducts(md));
+                // Apply animations to all sections including dynamically loaded cards
+                document.querySelectorAll('.feature-section, .rd-product-card, .cta-section, .rd-intro, .partners-section').forEach(el => {
+                    el.classList.add('animate-target');
+                    observer.observe(el);
+                });
+            })
+            .catch(() => {
+                // Fallback: animate static sections if products.md fails to load
+                document.querySelectorAll('.feature-section, .cta-section, .rd-intro, .partners-section').forEach(el => {
+                    el.classList.add('animate-target');
+                    observer.observe(el);
+                });
+            });
 
         // Contact lightbox
         const contactBtn = document.getElementById('contact-btn');
